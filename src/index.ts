@@ -4,6 +4,7 @@ import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import http from 'http'
+import mongoose from 'mongoose'
 
 const app = express()
 
@@ -21,3 +22,10 @@ const server = http.createServer(app)
 server.listen(8000, () => {
     console.log('Server is running on http://localhost:8080/')
 })
+
+//configurando o mongoose
+const MONGO_URL = "mongodb+srv://deyvsonaguiar:mongodb@cluster0.fyfrcj6.mongodb.net/test"
+
+mongoose.Promise = Promise
+mongoose.connect(MONGO_URL)
+mongoose.connection.on('error', (error: Error) => console.log(error))
