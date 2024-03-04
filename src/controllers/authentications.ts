@@ -2,6 +2,24 @@ import { createUser, getUserByEmail } from 'db/users'
 import express, { Request, Response } from 'express'
 import { authentication, random } from 'helpers'
 
+/**
+ * Registers a new user.
+ * 
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The registered user as a JSON object.
+ * @throws 400 - If the request body is missing any of the required fields or user already exists.
+ * @example 
+ * //User data from request
+ * {
+ *   "email": "joao@gmail.com",
+ *   "password": "123456",
+ *   "username": "joao123"
+ * }
+ * //User data on response
+ * {}
+ * 
+ */
 export const register = async (req: Request, res: Response) => {
   try {
     const { email, password, username}  = req.body

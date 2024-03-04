@@ -24,8 +24,10 @@ server.listen(8000, () => {
 })
 
 //configurando o mongoose
-const MONGO_URL = "mongodb+srv://deyvsonaguiar:deyvsonaguiar@code-wit-antonio-api-re.bxwjxk2.mongodb.net/?retryWrites=true&w=majority&appName=code-wit-antonio-api-rest"
+const MONGO_URL = process.env.MONGO_URL
 
-mongoose.Promise = Promise
-mongoose.connect(MONGO_URL)
-mongoose.connection.on('error', (error: Error) => console.log(error))
+if (MONGO_URL) {
+    mongoose.Promise = Promise
+    mongoose.connect(MONGO_URL)
+    mongoose.connection.on('error', (error: Error) => console.log(error))
+}
